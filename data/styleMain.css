@@ -1,0 +1,85 @@
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    text-align: center;
+}
+h1 {
+    font-size: 1.8rem;
+    color: white;
+}
+.topnav {
+    overflow: hidden;
+    background-color: #a3a3a4;
+}
+body {
+    margin: 0;
+
+}
+.content {
+    padding: 50px;
+}
+.card-grid {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.card {
+    background-color: white;
+    box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+}
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #034078
+}
+.reading {
+    font-size: 1.2rem;
+    color: #1282A2;
+}
+  
+
+.radioItem {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    width: fit-content;
+    line-height: 1;
+    cursor: pointer;
+  }
+  
+  .radioItem {
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+    width: fit-content;
+    line-height: 1;
+    cursor: pointer;
+  }
+  
+  .radioItem:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
+  
+  .radioButton {
+    appearance: none;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #9dba28;
+    border-radius: 9999px;
+    cursor: pointer;
+  }
+  
+  .radioButton:checked::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 12px;
+    height: 12px;
+    margin: auto;
+    border-radius: 9999px;
+    background-color: #2cd507;
+  }

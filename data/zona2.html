@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>NAE-1</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="stylesheet" type="text/css" href="styleMain.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <script defer src="scriptMain.js"></script>
+        <script defer src="js/bootstrap.bundle.min.js"></script>
+        <!-- <script src="chart.js"></script> -->
+    </head>
+    <body>
+        <div class="topnav">
+            <h1>IRRIGACAO E CONTROLE DE AGUA</h1>
+            <a class="btn btn-primary" href="index.html">ZONA 1</a>
+            <a class="btn btn-success" href="zona2.html">ZONA 2</a>
+            <a class="btn btn-primary" href="zona3.html">ZONA 3</a>
+            <a class="btn btn-primary" href="zona4.html">ZONA 4</a>
+        </div>
+        <div class="content">
+            <p id="title"></p>
+              <div class="card-grid">
+                  <!-- <div class="card">
+                      <p class="card-title"><i class="fas fa-thermometer-threequarters" style="color:#059e8a;"></i> Temperature</p>
+                      <p class="reading"><span id="temperature"></span> &deg;C</p>
+                  </div> -->
+                  <div class="card">
+                      <p class="card-title"> Humidade</p>
+                      <p class="reading"><span id="humidadeZona2"></span> &percnt;</p>
+                  </div>
+                  <div class="card">
+                      <p class="card-title"> Consumo atual</p>
+                      <p class="reading"><span id="consumoZona2"></span> Litros</p>
+                  </div>
+                  <!-- <div class="card">
+                      <p class="card-title"> Led</p>
+                      <p class="reading"><span id="led"></span></p>
+                      <p class="reading"><button onclick="changeLed()" class="btn btn-primary" type="button">On/Off</button></span></p>
+                  </div>
+                  <div class="card">
+                      <p class="card-title"> Potenciometro</p>
+                      <p class="reading"><span id="potenciometro"></span> rpm</p>
+                  </div>                 -->
+              </div>
+          </div>
+          <!-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
+  
+          <div id="liveToast" class="toast position-fixed bottom-0 end-0 p-3 text-bg-success" data-bs-delay="2000" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="d-flex">
+                <div class="toast-body">
+                  Bomba ligada!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+            </div> -->
+  
+            <!-- Button trigger modal -->
+          <button type="button" onclick="toggleBomba('zona2')" class="btn btn-primary" name="btnToggleManual">
+            Ligar/Desligar
+          </button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalConfig">
+            Configurar zona
+          </button>
+  
+          <!-- Modal COnfig-->
+          <div class="modal fade" id="modalConfig" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Tipo de irrigacao</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+  
+                  <div class="form-check radioItem">
+                    <label class="form-check-label">
+                    <input onclick="enableDisableDropDown()" class="form-check-input radioButton" type="radio" name="radioTipo" id="flexRadioDefault1" value="manual" checked>
+                      Manual
+                    </label>
+                  </div>
+                  <div class="form-check radioItem">
+                    <label class="form-check-label">
+                    <input onclick="enableDisableDropDown()" class="form-check-input radioButton" type="radio" name="radioTipo" value="automatico" id="flexRadioDefault2">
+                      Automatico
+                    </label>
+                  </div>
+                  <div class="form-check radioItem">
+                    <label class="form-check-label">
+                    <input onclick="enableDisableDropDown()" class="form-check-input radioButton" type="radio" name="radioTipo" value="personalizado" id="radioPersonalizado">
+                      Personalizado
+                    </label>
+                  </div>
+  
+                    <select id="selectTipoIrrigacao" class="form-select" aria-label="Configurar Zona" disabled>
+                        <option selected>Escolha o tipo de irrigacao</option>
+                        <option value="arbusto">Arvore pequena ou arbusto</option>
+                        <option value="arvore">Arvore grande</option>
+                        <option value="3">Milho</option>
+                        <option value="4">Café</option>
+                        <option value="5">Soja</option>
+                        <option value="6">Banana</option>
+                        <option value="7">Batata</option>
+                      </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="salvar('zona2')">Salvar</button>
+                  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNovo">Novo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+            <!-- Modal Novo-->
+            <div class="modal fade" id="modalNovo" tabindex="0" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tipo de irrigacao</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="novoTipo" onsubmit="return false;">
+                      <div class="mb-2">
+                        <label for="recipient-name" class="col-form-label">Nome</label>
+                        <input type="text" class="form-control" id="nomeTipo">
+                      </div>
+                      <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Tempo ligado</label>
+                        <input type="text" class="form-control" id="tempoLigado">
+                      </div>
+                      <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Intervalo</label>
+                        <input type="text" class="form-control" id="tempoIntervalo">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" onclick="salvarNovo()">Salvar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </body>
+</html>
