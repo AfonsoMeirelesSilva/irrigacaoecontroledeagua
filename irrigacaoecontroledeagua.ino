@@ -11,8 +11,8 @@
 // const char* ssid = "IoT";
 // const char* password = "12244896";
 
-const char* ssid = "NAE1";
-const char* password = "12345678";
+const char* ssid = "SSID";
+const char* password = "PASSWORD";
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
